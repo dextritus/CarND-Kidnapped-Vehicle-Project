@@ -71,14 +71,15 @@ int main()
 			double sense_x = std::stod(j[1]["sense_x"].get<std::string>());
 			double sense_y = std::stod(j[1]["sense_y"].get<std::string>());
 			double sense_theta = std::stod(j[1]["sense_theta"].get<std::string>());
-
+      std::cout<<"init"<<endl;
 			pf.init(sense_x, sense_y, sense_theta, sigma_pos);
 		  }
 		  else {
 			// Predict the vehicle's next state from previous (noiseless control) data.
 		  	double previous_velocity = std::stod(j[1]["previous_velocity"].get<std::string>());
-			double previous_yawrate = std::stod(j[1]["previous_yawrate"].get<std::string>());
+			  double previous_yawrate = std::stod(j[1]["previous_yawrate"].get<std::string>());
 
+      std::cout<<"predicting"<<endl;
 			pf.prediction(delta_t, sigma_pos, previous_velocity, previous_yawrate);
 		  }
 
@@ -111,6 +112,7 @@ int main()
         	}
 
 		  // Update the weights and resample
+      std::cout<<"enter uodate weights" <<endl;
 		  pf.updateWeights(sensor_range, sigma_landmark, noisy_observations, map);
 		  pf.resample();
 
@@ -121,11 +123,11 @@ int main()
 		  Particle best_particle;
 		  double weight_sum = 0.0;
 		  for (int i = 0; i < num_particles; ++i) {
-			if (particles[i].weight > highest_weight) {
-				highest_weight = particles[i].weight;
-				best_particle = particles[i];
-			}
-			weight_sum += particles[i].weight;
+  			if (particles[i].weight > highest_weight) {
+  				highest_weight = particles[i].weight;
+  				best_particle = particles[i];
+  			}
+			 weight_sum += particles[i].weight;
 		  }
 		  cout << "highest w " << highest_weight << endl;
 		  cout << "average w " << weight_sum/num_particles << endl;
