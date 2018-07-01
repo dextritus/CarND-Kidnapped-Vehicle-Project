@@ -79,7 +79,6 @@ int main()
 		  	double previous_velocity = std::stod(j[1]["previous_velocity"].get<std::string>());
 			  double previous_yawrate = std::stod(j[1]["previous_yawrate"].get<std::string>());
 
-      std::cout<<"predicting"<<endl;
 			pf.prediction(delta_t, sigma_pos, previous_velocity, previous_yawrate);
 		  }
 
@@ -112,7 +111,7 @@ int main()
         	}
 
 		  // Update the weights and resample
-      std::cout<<"enter uodate weights" <<endl;
+      //std::cout<<"enter update weights" <<endl;
 		  pf.updateWeights(sensor_range, sigma_landmark, noisy_observations, map);
 		  pf.resample();
 

@@ -12,4 +12,4 @@ The general steps of the algorithm were as follows:
 * ```num_particles``` are resampled with replacement according to the weights obtained previously 
 * the best particle is used as the best possible car location
 
-A number of 30 particles is used in this project. A higher number of particles can decrease the RMS error of the heading and x and y coordinates, however the computational time increases. Furthermore, a larger number of particles could be required if the map and/or the motion of the vehicle becomes more complex. 
+A number of 30 particles is used in this project. This results in a final RMS for x, y, and heading of **(0.133, 0.130, 0.004)**. A higher number of particles can decrease the RMS error of the heading and x and y coordinates, however the computational time increases. Furthermore, a larger number of particles could be required if the map and/or the motion of the vehicle becomes more complex. 
